@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  stremio-server:
+    image: stremio-server
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: stremio-server
+    container_name: stremio-server
+    volumes:
+      - ./stremio-server-config/:/root/.stremio-server/
+    ports:
+      - "11475:11470"
+
+  stremio-web:
+    image: stremio-web
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: stremio-web
+    container_name: stremio-web
+    ports:
+      - "8085:8080"
